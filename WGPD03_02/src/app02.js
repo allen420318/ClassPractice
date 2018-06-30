@@ -41,3 +41,14 @@ var Main02Scene = cc.Scene.extend({
     }
 });
 
+function shuffle(a){
+    var i,j,x;
+
+    for (i=a.length; i; i--){
+        j = parseInt(Math.random()*i);  // 0-9
+        x = a[i-1];
+        a[i-1] = a[j];
+        a[j] = x;
+    }
+    return a;
+}

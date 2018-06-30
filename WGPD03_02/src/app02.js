@@ -12,7 +12,7 @@ var Main02Layer = cc.Layer.extend({
 
         cc.spriteFrameCache.addSpriteFrames(res.poker_plist,res.poker_png);
         this.sprite = new cc.Sprite("#pokers_back.png");
-        console.log(this.sprite.width + ":" + this.sprite.height);
+        // console.log(this.sprite.width + ":" + this.sprite.height);
         this.sx = (cc.winSize.width / 13) / (this.sprite.width+24);
         this.sy = (cc.winSize.height / 4) / (this.sprite.height+60);
 
@@ -27,7 +27,6 @@ var Main02Layer = cc.Layer.extend({
                 this.addChild(this.players[j][i]);
             }
         }
-
 
         this.setUpmymouse(this);
 

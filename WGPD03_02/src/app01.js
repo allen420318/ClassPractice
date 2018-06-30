@@ -37,7 +37,7 @@ var MainLayer = cc.Layer.extend({
             x: cc.winSize.width *3 /4,
             y: cc.winSize.height /2,
         });
-        this.poker4.setScale(0.5,0.5);
+        this.poker4.setScale(0.5,0.5); 
         this.addChild(this.poker4);
 
         this.myMouseListener(this);

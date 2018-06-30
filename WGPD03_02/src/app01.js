@@ -19,9 +19,21 @@ var MainLayer = cc.Layer.extend({
             y: cc.winSize.height *7 /8
         });
         this.addChild(this.status);
-
+        
+        this.myMouseListener(this);
+        
         return true;
-    }
+    },
+    
+    myMouseListener: function (layer) {
+        cc.eventManager.addListener({
+            event: cc.EventListener.MOUSE,
+            onMouseDown:function (event) {
+                
+            }
+            
+        },layer);
+    },
 });
 
 var MainScene = cc.Scene.extend({

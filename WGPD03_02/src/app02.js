@@ -2,9 +2,13 @@ var Main02Layer = cc.Layer.extend({
     sprite:null,
     sx:1,
     sy:1,
+    pokers: new Array(52),
+    cards: new Array(new Array(13),new Array(13),new Array(13),new Array(13)),
     players: new Array(new Array(13),new Array(13),new Array(13),new Array(13)),
     ctor:function () {
         this._super();
+
+        this.shufflePokers();
 
         cc.spriteFrameCache.addSpriteFrames(res.poker_plist,res.poker_png);
         this.sprite = new cc.Sprite("#pokers_back.png");
@@ -16,7 +20,7 @@ var Main02Layer = cc.Layer.extend({
         for (var j = 0; j<this.players.length; j++){
 
             for (var i = 0; i<this.players[j].length; i++){
-                this.players[j][i] = new cc.Sprite("#pokers_back.png");
+                this.players[j][i] = new cc.Sprite("#pokers_"+ this.cards[j][i] +".png");
                 this.players[j][i].x = cc.winSize.width *(i+1) / 14;
                 this.players[j][i].y = cc.winSize.height * (j+1) /5;
                 this.players[j][i].setScale(this.sx,this.sy);
@@ -24,13 +28,25 @@ var Main02Layer = cc.Layer.extend({
             }
         }
 
-        this.sprite.x = cc.winSize.width *1 /14;
-        this.sprite.y = cc.winSize.height *4 /5;
-        this.sprite.setScale(this.sx,this.sy);
-        this.addChild(this.sprite);
-
         return true;
+    },
+
+    shufflePokers: function () {
+        for(var i=0;i<this.pokers.length;i++){
+            this.pokers[i] = i;
+        }
+        this.pokers = shuffle(this.pokers);
+
+        for (var i=0;i<this.pokers.length;i++){
+            this.cards[i%4][parseInt(i/4)] = this.pokers[i];
+        }
+
+        this.cards[0].sort(function(a, b){return a-b});
+        this.cards[1].sort(function(a, b){return a-b});
+        this.cards[2].sort(function(a, b){return a-b});
+        this.cards[3].sort(function(a, b){return a-b});
     }
+
 });
 
 var Main02Scene = cc.Scene.extend({
